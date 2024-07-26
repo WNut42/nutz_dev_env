@@ -14,4 +14,5 @@ return {
   -- these packs can set up things such as Treesitter, Language Servers, additional language specific plugins, and more!
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.recipes.telescope-lsp-mappings" },
 }

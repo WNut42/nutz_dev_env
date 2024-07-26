@@ -83,6 +83,10 @@ return {
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
+        gd = { function() vim.lsp.buf.definition() end, desc = "Goto Definition" },
+        gr = { function() require("telescope.builtin").lsp_references() end, desc = "Goto References" },
+        gi = { function() vim.lsp.buf.implementation() end, desc = "Goto Implementation" },
+        K = { function() vim.lua.buf.hover() end, desc = "buf hover" },
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         -- gD = {
         --   function() vim.lsp.buf.declaration() end,
@@ -101,6 +105,18 @@ return {
     on_attach = function(client, bufnr)
       -- this would disable semanticTokensProvider for all clients
       -- client.server_capabilities.semanticTokensProvider = nil
+      -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+      -- local opts = { noremap = true, silent = true }
+
+      -- -- 这里添加自定义的快捷键绑定
+      -- -- 跳转到定义
+      -- buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+      -- -- 跳转到引用
+      -- buf_set_keymap("n", "gr", '<Cmd>lua require("telescope.builtin").lsp_references()<CR>', opts)
+      -- -- 跳转到实现
+      -- buf_set_keymap("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+      -- -- 其他自定义快捷键
+      -- buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
     end,
   },
 }
